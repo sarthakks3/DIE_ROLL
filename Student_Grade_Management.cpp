@@ -31,31 +31,50 @@ int main() {
         cout << "Enter choice: ";
         cin >> choice;
 
+        // 🔥 Fix infinite loop (invalid input handling)
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "\nInvalid input! Please enter numbers only.\n";
+            continue;
+        }
+
         if (choice == 1) {
             cout << "\nEnter Roll No: ";
             cin >> s[count].roll;
+
             cout << "Enter Name: ";
             cin >> s[count].name;
-            cout << "Enter Marks of 5 Subjects: ";
-            cin >> s[count].m1 >> s[count].m2 >> s[count].m3 >> s[count].m4 >> s[count].m5;
 
-            s[count].total = s[count].m1 + s[count].m2 + s[count].m3+ s[count].m4+ s[count].m5;
+            cout << "Enter Marks of 5 Subjects: ";
+            cin >> s[count].m1 >> s[count].m2 >> s[count].m3
+                >> s[count].m4 >> s[count].m5;
+
+            s[count].total = s[count].m1 + s[count].m2 + s[count].m3 +
+                             s[count].m4 + s[count].m5;
+
             s[count].percent = s[count].total / 5.0;
             s[count].grade = calcGrade(s[count].percent);
 
             count++;
             cout << "\nStudent Added Successfully!\n";
         }
+
         else if (choice == 2) {
-            cout << "\n---- Student Records ----\n";
-            for (int i = 0; i < count; i++) {
-                cout << "Roll: " << s[i].roll
-                     << ", Name: " << s[i].name
-                     << ", Total: " << s[i].total
-                     << ", %: " << s[i].percent
-                     << ", Grade: " << s[i].grade << endl;
+            if (count == 0) {
+                cout << "\nNo records available!\n";
+            } else {
+                cout << "\n---- Student Records ----\n";
+                for (int i = 0; i < count; i++) {
+                    cout << "Roll: " << s[i].roll
+                         << ", Name: " << s[i].name
+                         << ", Total: " << s[i].total
+                         << ", %: " << s[i].percent
+                         << ", Grade: " << s[i].grade << endl;
+                }
             }
         }
+
         else if (choice == 3) {
             int r;
             cout << "Enter Roll No to Search: ";
@@ -70,13 +89,20 @@ int main() {
                     cout << "Total Marks: " << s[i].total << endl;
                     cout << "Percentage: " << s[i].percent << endl;
                     cout << "Grade: " << s[i].grade << endl;
+
                     found = true;
                 }
             }
-            if (!found) cout << "Student Not Found.\n";
+            if (!found)
+                cout << "Student Not Found.\n";
+        }
+
+        else if (choice != 4) {
+            cout << "\nInvalid choice! Try again.\n";
         }
 
     } while (choice != 4);
 
+    cout << "\nExiting Program... Goodbye!\n";
     return 0;
 }
