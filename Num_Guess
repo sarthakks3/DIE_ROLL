@@ -1,36 +1,51 @@
-#include<iostream>
-#include<cstdlib>
-#include<ctime>
-
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
-int main(){
-    int num;
-    int guess;
-    int tries =0;
+int main() 
+{
+    int f = 0, n = 1;
+    cout << "****************DIE ROLL****************\n";
+    cout << "Enter No. of faces on the dice: ";
+    cin >> f;
+    cout << "Enter No. of DICE(1-3): ";
+    cin >> n;
 
     srand(time(NULL));
-    num = (rand() % 100) + 1 ;
 
-    cout << "*******NUMBER GUESSING GAME********\n";
-
-    do{
-        cout << "Enter Your Guess between (1-100): ";
-        cin >> guess;
-        tries++;
-
-        if(guess > num){
-            cout << "Too HIigh!\n";
+    switch(n){
+        case 1:
+        {
+            int num1 = (rand() % f) + 1;
+            cout << "Final Result:\n";
+            cout <<"DIE 1 : " << num1 << endl;
+            break;
         }
-        else if(guess < num){
-            cout << "Too Low!\n";
-        }
-        else{
-            cout << "CORRECT! Tries: "  << tries << endl ;
-        }
-    }while(guess!=num);
 
-    cout << "**************************************\n";
+        case 2:
+        {
+            int num1 = (rand() % f) + 1;
+            int num2 = (rand() % f) + 1;
+            cout << "Final Result:\n";
+            cout << "DIE 1 : "<< num1 << endl <<"DIE 2 : "<< num2 << endl;
+            break;
+        }
+
+        case 3:
+        {
+            int num1 = (rand() % f) + 1;
+            int num2 = (rand() % f) + 1;
+            int num3 = (rand() % f) + 1;
+            cout << "Final Result:\n";
+            cout <<"DIE 1 : "<< num1 << endl <<"DIE 2 : "<< num2 << endl <<"DIE 3 : "<< num3 << endl;
+            break;
+        }
+
+        default:
+            cout << "Enter No. between (1-3)\n";
+            break;
+    }
 
     return 0;
 }
