@@ -31,7 +31,7 @@ int main() {
         cout << "Enter choice: ";
         cin >> choice;
 
-        // 🔥 Fix infinite loop (invalid input handling)
+        
         if (cin.fail()) {
             cin.clear();
             cin.ignore(1000, '\n');
